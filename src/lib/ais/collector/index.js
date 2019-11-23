@@ -1,9 +1,13 @@
 module.exports = ({ fetchAisData, interval }) => {
+  let id = null
   return {
     start: () => {
-      setInterval(() => {
+      id = setInterval(() => {
         fetchAisData()
       }, interval)
+    },
+    stop: () => {
+      clearInterval(id)
     }
   }
 }
