@@ -2,7 +2,7 @@ version: '3'
 services:
   ais-api:
     build: .
-    image: kenguru33/rs-position-tracker
+    image: redningsselskapet/rs-position-tracker
     networks: 
       - aisnet-backend
     ports: 
