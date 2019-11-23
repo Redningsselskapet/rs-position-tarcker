@@ -10,6 +10,8 @@ const apiRouter = require('./routes/api-router')
 const mongoose = require('mongoose')
 const morgan = require('morgan')
 
+const AisCollector = require('./lib/ais/collector')
+
 const swaggerSpec = require('./docs/swagger-spec')
 const swaggerUi = require('swagger-ui-express')
 
@@ -23,9 +25,11 @@ const connOptions = {
   useUnifiedTopology: true
 }
 mongoose
-  .connect(DB_URI,
+  .connect(
+    DB_URI,
     connOptions
-  ).then(conn => {
+  )
+  .then(conn => {
     console.log(chalk.green('Connection to database established.'))
   })
   .catch(err => {
@@ -34,6 +38,13 @@ mongoose
     process.exit(1)
   })
 
+const aisCollector = AisCollector({
+  fetchAisData: () => ais.fetchAisData(process.env.AIS_DATA_URL),
+  aisRepository: ais.repository,
+  interval: 2000
+})
+aisCollector.start()
+/*
 // init ais Import Service
 const importData = function () {
   ais
@@ -59,6 +70,7 @@ if (process.env.ENABLE_AIS_FETCHER === 'true') {
   setInterval(importData, process.env.AIS_DATA_FETCH_INTERVAL)
   console.log(chalk.green('Ais Import Service started.'))
 }
+*/
 
 // init express application
 if (process.env.ENABLE_API) {
