@@ -35,7 +35,6 @@ npm start # or npm watch to run with nodemon
 ### docker-compose example:
 
 ### dev setup:
-
 ```
 docker-compose -f docker-compose-dev.yml up --build  
 ```
