@@ -1,0 +1,36 @@
+version: '3'
+services:
+  ais-api:
+    build: .
+    image: kenguru33/rs-position-tracker
+    networks: 
+      - aisnet-backend
+    ports: 
+      - 3000:3000  
+    environment:
+      - ENABLE_API=true
+      - ENABLE_AIS_FETCHER=true
+      - AIS_DATA_URL=https://ais.rs.no/aktive_pos.json
+      - DB_URI=mongodb://mongodb-service:27017/positions
+      - DB_USER=my_user
+      - DB_PASSWORD=password123
+    volumes:
+      - ./src:/app/src
+    restart: on-failure
+    command: ["node", "src/app.js"]
+  mongodb-service:
+    image: bitnami/mongodb
+    environment:
+      - MONGODB_ROOT_PASSWORD=secret
+      - MONGODB_EXTRA_FLAGS=--wiredTigerCacheSizeGB=2
+      - MONGODB_USERNAME=my_user
+      - MONGODB_PASSWORD=password123
+      - MONGODB_DATABASE=positions
+    networks: 
+      - aisnet-backend
+    ports: 
+      - 27017:27017
+networks:
+  aisnet-backend:
+
+ 
