@@ -7,28 +7,29 @@ const express = require('express')
 const apiRouter = require('./routes/api-router')
 const morgan = require('morgan')
 
-function myTest () {
-  const Collector = require('@redningsselskapet/data-collector')
-  const provider = require('./config/aisdata-provider-service/aisdata-providers')
-    .kystverket
-  const dataMapper = require('./config/aisdata-provider-service/data-mapper')
-  const fetchAisData = require('./services/ais-provider-service/fetch-aisdata')
-  const { addAisPositions } = require('./services/ais-service')
-  const aisDataCollector = Collector({
-    fetchDataFunc: () =>
-      fetchAisData({
-        url: provider.url,
-        dataMapper: dataMapper.kystverket
-      }),
-    interval: 2000,
-    name: provider.name,
-    workerFunc: data => addAisPositions(data)
-  })
-
-  aisDataCollector.start()
-}
-// myTest()
+const { swaggerSpec } = require('./config/docs')
+const swaggerUi = require('swagger-ui-express')
 
 const { aisDataCollectors } = require('./services/ais-provider-service')
 
+// starts all enabled collectors
 aisDataCollectors.start()
+
+if (process.env.ENABLE_API) {
+  const app = express()
+
+  app.options('*', cors())
+  app.use(cors())
+
+  app.use(morgan('combined'))
+
+  app.use('/api', apiRouter)
+
+  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
+
+  app.use('/', express.static(path.join(__dirname, '/public')))
+
+  app.listen(process.env.PORT, function () {
+    console.log(`Web API Service started on port ${process.env.PORT}.`)
+  })
+}

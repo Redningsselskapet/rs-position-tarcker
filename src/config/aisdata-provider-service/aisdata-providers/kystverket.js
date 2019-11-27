@@ -5,5 +5,5 @@ module.exports = {
   dataMapper: dataMapper.kystverket,
   name: 'kystverket',
   interval: 60000,
-  enabled: true
+  enabled: process.env.AIS_DATA_PROVIDER_KYSTVERKET_ENABLED === 'true'
 }

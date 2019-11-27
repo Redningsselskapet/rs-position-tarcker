@@ -5,10 +5,12 @@ const {
 const fetchAisData = require('./fetch-aisdata')
 const { addAisPositions } = require('../ais-service')
 const serviceManager = require('./collector-manager')
+const logger = require('../logger-service')
 
 const aisDataCollectors = []
 
 aisDataProviders.forEach(provider => {
+  logger.info(`Provider ${provider.name} is ${provider.enabled ? 'enabled' : 'disabled'}`)
   if (!provider.enabled) return
   const collector = DataCollector({
     fetchDataFunc: () =>

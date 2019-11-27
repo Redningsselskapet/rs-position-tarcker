@@ -6,5 +6,5 @@ module.exports = {
   dataMapper: dataMapper.marineTraffic,
   name: 'marine-traffic',
   interval: 60000,
-  enabled: true
+  enabled: process.env.AIS_DATA_PROVIDER_MARINE_TRAFFIC_ENABLED === 'true'
 }

@@ -105,7 +105,7 @@ module.exports = {
       return
     }
     aisDataService
-      .getLastPosition(req.params.mmsi)
+      .getLastAisPosition(req.params.mmsi)
       .then(aisPosition => {
         res.send(aisPosition)
       })

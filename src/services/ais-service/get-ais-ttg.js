@@ -1,5 +1,5 @@
 const moment = require('moment')
-const getLastPosition = require('./get-last-position')
+const getLastPosition = require('./get-last-ais-position')
 const getDistance = require('./get-distance')
 
 /**
