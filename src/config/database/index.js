@@ -7,7 +7,8 @@ const options = {
   user: DB_USER,
   pass: DB_PASSWORD,
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+  useCreateIndex: true
 }
 mongoose.Promise = global.Promise
 
