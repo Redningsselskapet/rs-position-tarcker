@@ -1,95 +1,34 @@
 require('dotenv').config({ silent: true })
 require('./config')
+
 const path = require('path')
-const logger = require('./lib/logger')
-const ais = require('./lib/ais')
-const chalk = require('chalk')
 const cors = require('cors')
 const express = require('express')
 const apiRouter = require('./routes/api-router')
-const mongoose = require('mongoose')
 const morgan = require('morgan')
 
-const AisCollector = require('./lib/ais/collector')
-
-const swaggerSpec = require('./docs/swagger-spec')
-const swaggerUi = require('swagger-ui-express')
-
-// init mongoose default connection
-mongoose.Promise = global.Promise
-const { DB_USER, DB_PASSWORD, DB_URI } = process.env
-const connOptions = {
-  user: DB_USER,
-  pass: DB_PASSWORD,
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-}
-mongoose
-  .connect(
-    DB_URI,
-    connOptions
-  )
-  .then(conn => {
-    console.log(chalk.green('Connection to database established.'))
-  })
-  .catch(err => {
-    console.log(chalk.red(`Error: ${err.message}`))
-    console.log(chalk.red('Shutting down...'))
-    process.exit(1)
+function myTest () {
+  const Collector = require('@redningsselskapet/data-collector')
+  const provider = require('./config/aisdata-provider-service/aisdata-providers')
+    .kystverket
+  const dataMapper = require('./config/aisdata-provider-service/data-mapper')
+  const fetchAisData = require('./services/ais-provider-service/fetch-aisdata')
+  const { addAisPositions } = require('./services/ais-service')
+  const aisDataCollector = Collector({
+    fetchDataFunc: () =>
+      fetchAisData({
+        url: provider.url,
+        dataMapper: dataMapper.kystverket
+      }),
+    interval: 2000,
+    name: provider.name,
+    workerFunc: data => addAisPositions(data)
   })
 
-const aisCollector = AisCollector({
-  fetchAisData: () => ais.fetchAisData(process.env.AIS_DATA_URL),
-  aisRepository: ais.repository,
-  interval: 2000
-})
-aisCollector.start()
-/*
-// init ais Import Service
-const importData = function () {
-  ais
-    .fetchAisData(process.env.AIS_DATA_URL)
-    .then(aisData =>
-      ais.repository
-        .addAisPositions(aisData)
-        .then(data =>
-          logger.debug(
-            `All new ais positions written to database. (${data.length})`
-          )
-        )
-    )
-    .catch(error => {
-      logger.error(
-        `Fetching ais data from ${process.env.AIS_DATA_URL} failed! ${error}`
-      )
-    })
+  aisDataCollector.start()
 }
+// myTest()
 
-// start ais Import Service
-if (process.env.ENABLE_AIS_FETCHER === 'true') {
-  setInterval(importData, process.env.AIS_DATA_FETCH_INTERVAL)
-  console.log(chalk.green('Ais Import Service started.'))
-}
-*/
+const { aisDataCollectors } = require('./services/ais-provider-service')
 
-// init express application
-if (process.env.ENABLE_API) {
-  const app = express()
-
-  app.options('*', cors())
-  app.use(cors())
-
-  app.use(morgan('combined'))
-
-  app.use('/api', apiRouter)
-
-  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
-
-  app.use('/', express.static(path.join(__dirname, '/public')))
-
-  app.listen(process.env.PORT, function () {
-    console.log(
-      chalk.green(`Web API Service started on port ${process.env.PORT}.`)
-    )
-  })
-}
+aisDataCollectors.start()

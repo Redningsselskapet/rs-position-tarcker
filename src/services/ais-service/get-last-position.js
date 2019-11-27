@@ -1,5 +1,5 @@
-const fetchAisData = require('../fetch-ais-data')
-
+// const fetchAisData = require('../fetch-ais-data')
+// FIXME: Cannot fetcher to this. Findt last position in DB instead. (date = now)
 /**
  * get the last reported position for an given mmsi
  * @param mmsi

@@ -1,4 +1,4 @@
-const fetchAisData = require('../lib/ais').fetchAisData
+// const fetchAisData = require('../lib/ais').fetchAisData
 
 module.exports = {
   getMovingVessels (req, res) {

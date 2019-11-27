@@ -1,6 +1,6 @@
-const AisPosition = require('./models/ais-position')
 const moment = require('moment')
-const logger = require('../../logger')
+const { AisPosition } = require('../../config/database')
+const logger = require('../logger-service')
 
 /**
  *

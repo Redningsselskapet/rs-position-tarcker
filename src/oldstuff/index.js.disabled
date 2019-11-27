@@ -21,7 +21,7 @@ if (!process.env.DB_USER) {
   process.exit()
 }
 
-if (!process.env.AIS_DATA_URL) {
-  console.error('error:', 'AIS_DATA_URL is not set')
-  process.exit()
+module.exports = {
+    db,
+    logger
 }

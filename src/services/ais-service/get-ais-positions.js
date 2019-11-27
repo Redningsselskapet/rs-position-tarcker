@@ -1,5 +1,5 @@
-const AisPosition = require('./models/ais-position')
-const logger = require('../../logger/index')
+const { AisPosition } = require('../../config/database')
+const logger = require('../logger-service')
 
 /**
  *

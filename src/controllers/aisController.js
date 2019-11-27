@@ -1,5 +1,5 @@
-const ais = require('../lib/ais')
-const logger = require('../lib/logger')
+const aisDataService = require('../services/ais-service')
+const logger = require('../config/logger')
 const moment = require('moment')
 
 const isMMSIValid = function (mmsi) {
@@ -29,7 +29,7 @@ module.exports = {
     if (req.params.mmsi === '*') {
       req.params.mmsi = null
     }
-    ais.repository
+    aisDataService
       .getAisPositions(req.params.fromTime, req.params.toTime, req.params.mmsi)
       .then(aisData => {
         res.send(aisData)
@@ -51,7 +51,7 @@ module.exports = {
       return
     }
 
-    ais.repository
+    aisDataService
       .getAisPositions(req.params.fromTime, req.params.toTime, req.params.mmsi)
       .then(aisData => {
         const distance = ais.repository.getDistance(aisData)
@@ -83,7 +83,7 @@ module.exports = {
       return
     }
 
-    ais.repository
+    aisDataService
       .getAisTTG(req.params.mmsi, req.params.latitude, req.params.longitude)
       .then(timeToGo => {
         res.send(timeToGo)
@@ -104,7 +104,7 @@ module.exports = {
       res.status(400).send({ error: 'not an valid mmsi' })
       return
     }
-    ais.repository
+    aisDataService
       .getLastPosition(req.params.mmsi)
       .then(aisPosition => {
         res.send(aisPosition)
@@ -124,7 +124,7 @@ module.exports = {
       return
     }
 
-    ais.repository
+    aisDataService
       .getAisPosition(req.params.time, req.params.mmsi)
       .then(aisPosition => {
         if (!aisPosition) {
