@@ -29,7 +29,7 @@ const getAisPosition = async (time, mmsi) => {
     })
 
     let nearestPos = null
-    let smallestTimeDiff = timeWindowMinutes * 1000 / 2
+    let smallestTimeDiff = (timeWindowMinutes * 1000) / 2
 
     positions.map(position => {
       const diff = Math.abs(unixTime - moment.utc(position.Time_stamp).unix())

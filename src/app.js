@@ -1,6 +1,8 @@
 require('dotenv').config({ silent: true })
 require('./config')
 
+const { ENABLE_AIS_COLLECTOR, ENABLE_API } = process.env
+
 const path = require('path')
 const cors = require('cors')
 const express = require('express')
@@ -13,9 +15,13 @@ const swaggerUi = require('swagger-ui-express')
 const { aisDataCollectors } = require('./services/ais-provider-service')
 
 // starts all enabled collectors
-aisDataCollectors.start()
+if (ENABLE_AIS_COLLECTOR === 'true') {
+  aisDataCollectors.start() 
+} else {
+  console.log('All collectors disabled')
+}
 
-if (process.env.ENABLE_API) {
+if (ENABLE_API === 'true') {
   const app = express()
 
   app.options('*', cors())
@@ -32,4 +38,6 @@ if (process.env.ENABLE_API) {
   app.listen(process.env.PORT, function () {
     console.log(`Web API Service started on port ${process.env.PORT}.`)
   })
+} else {
+  console.log('Web API Service disabled')
 }

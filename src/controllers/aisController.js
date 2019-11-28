@@ -54,7 +54,7 @@ module.exports = {
     aisDataService
       .getAisPositions(req.params.fromTime, req.params.toTime, req.params.mmsi)
       .then(aisData => {
-        const distance = ais.repository.getDistance(aisData)
+        const distance = aisDataService.getDistance(aisData)
 
         res.send({
           MMSI: req.params.mmsi,
