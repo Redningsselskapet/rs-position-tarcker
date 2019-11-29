@@ -1,4 +1,5 @@
-const DataCollector = require('@redningsselskapet/data-collector')
+const worker = require('./lib/data-worker')
+
 const {
   aisDataProviders
 } = require('../../config/aisdata-provider-service/aisdata-providers')
@@ -10,15 +11,19 @@ const logger = require('../logger-service')
 const aisDataCollectors = []
 
 aisDataProviders.forEach(provider => {
-  logger.info(`Provider ${provider.name} is ${provider.enabled ? 'enabled' : 'disabled'}`)
+  logger.info(
+    `Provider ${provider.name} is ${provider.enabled ? 'enabled' : 'disabled'}`
+  )
   if (!provider.enabled) return
-  const collector = DataCollector({
-    fetchDataFunc: () =>
-      fetchAisData({ url: provider.url, dataMapper: provider.dataMapper }),
+  const collector = worker({
+    workerFunc: async () => {
+      const data = await fetchAisData({ url: provider.url, dataMapper: provider.dataMapper })
+      addAisPositions(data)
+    },
     interval: provider.interval,
-    name: provider.name,
-    workerFunc: data => addAisPositions(data)
+    name: provider.name
   })
+
   aisDataCollectors.push(serviceManager(collector))
 })
 
