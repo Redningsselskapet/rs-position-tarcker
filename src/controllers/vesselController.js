@@ -1,6 +1,6 @@
 // const fetchAisData = require('../lib/ais').fetchAisData
 const { fetchAisData } = require('../services/ais-provider-service')
-const { marineTraffic, kystverket } = require('../config/aisdata-provider-service/aisdata-providers')
+const { marineTraffic, kystverket } = require('../config/aisdata-providers')
 module.exports = {
   async getMovingVessels (req, res) {
     const vesselsKystverket = await fetchAisData({ url: kystverket.url, dataMapper: kystverket.dataMapper })

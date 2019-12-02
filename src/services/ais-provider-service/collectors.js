@@ -1,8 +1,6 @@
 const worker = require('@redningsselskapet/data-worker')
 
-const {
-  aisDataProviders
-} = require('../../config/aisdata-provider-service/aisdata-providers')
+const { aisDataProviders } = require('../../config/aisdata-providers')
 const fetchAisData = require('./fetch-aisdata')
 const { addAisPositions } = require('../ais-service')
 const serviceManager = require('./collector-manager')
@@ -17,7 +15,10 @@ aisDataProviders.forEach(provider => {
   if (!provider.enabled) return
   const collector = worker({
     worker: async () => {
-      const data = await fetchAisData({ url: provider.url, dataMapper: provider.dataMapper })
+      const data = await fetchAisData({
+        url: provider.url,
+        dataMapper: provider.dataMapper
+      })
       addAisPositions(data)
     },
     interval: provider.interval,
