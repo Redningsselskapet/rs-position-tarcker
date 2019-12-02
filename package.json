@@ -21,7 +21,7 @@
     "standard": "^14.3.1"
   },
   "dependencies": {
-    "@redningsselskapet/data-collector": "^1.0.3",
+    "@redningsselskapet/data-worker": "^1.0.0",
     "@redningsselskapet/dec2dms": "^1.0.0",
     "axios": "^0.19.0",
     "chalk": "^1.1.3",

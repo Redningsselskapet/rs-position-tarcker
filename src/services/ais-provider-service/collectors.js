@@ -1,4 +1,4 @@
-const worker = require('./lib/data-worker')
+const worker = require('@redningsselskapet/data-worker')
 
 const {
   aisDataProviders
@@ -16,7 +16,7 @@ aisDataProviders.forEach(provider => {
   )
   if (!provider.enabled) return
   const collector = worker({
-    workerFunc: async () => {
+    worker: async () => {
       const data = await fetchAisData({ url: provider.url, dataMapper: provider.dataMapper })
       addAisPositions(data)
     },
