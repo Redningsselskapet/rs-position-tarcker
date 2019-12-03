@@ -4,6 +4,6 @@ module.exports = {
   url: process.env.AIS_DATA_PROVIDER_KYSTVERKET_URL,
   dataMapper: dataMapper.kystverket,
   name: 'kystverket',
-  interval: 6000,
+  interval: 15000,
   enabled: process.env.AIS_DATA_PROVIDER_KYSTVERKET_ENABLED === 'true'
 }

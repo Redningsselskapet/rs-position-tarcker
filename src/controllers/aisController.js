@@ -135,5 +135,8 @@ module.exports = {
       .catch(error => {
         res.send(JSON.stringify(error.message))
       })
+  },
+  async getMovingVessels (req, res) {
+    res.send(await aisDataService.getMovingVessels())
   }
 }

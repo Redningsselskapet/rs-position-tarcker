@@ -9,6 +9,7 @@ services:
       - 3000:3000  
     environment:
       - ENABLE_API=true
+      - LOG_LEVEL=error
       - ENABLE_AIS_COLLECTOR=true
       - AIS_DATA_PROVIDER_KYSTVERKET_ENABLED=true
       - AIS_DATA_PROVIDER_MARINE_TRAFFIC_ENABLED=true

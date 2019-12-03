@@ -82,7 +82,7 @@ api.get('/get_distance/:mmsi/:fromTime/:toTime', aisController.getDistance)
  *       200:
  *         description: Moving Vessels
  */
-api.get('/get_moving_vessels', vesselController.getMovingVessels)
+api.get('/get_moving_vessels', aisController.getMovingVessels)
 
 /**
  * @swagger

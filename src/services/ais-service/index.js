@@ -5,6 +5,7 @@ const getAisTTG = require('./get-ais-ttg')
 const getDistance = require('./get-distance')
 const removeAisPosition = require('./remove-ais-positions')
 const getLastAisPosition = require('./get-last-ais-position')
+const getMovingVessels = require('./get-moving-vessels')
 module.exports = {
   addAisPositions,
   getAisPosition,
@@ -12,5 +13,6 @@ module.exports = {
   getAisTTG,
   getDistance,
   removeAisPosition,
-  getLastAisPosition
+  getLastAisPosition,
+  getMovingVessels
 }
