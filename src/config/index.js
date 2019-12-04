@@ -5,7 +5,7 @@ process.env.PORT = process.env.PORT || 3000
 process.env.LOG_LEVEL = process.env.LOG_LEVEL || 'info'
 
 process.env.ENABLE_AIS_COLLECTOR = process.env.ENABLE_AIS_COLLECTOR || 'false'
-process.env.ENABLE_API = process.env.ENABLE_API || 'false'
+process.env.ENABLE_API = process.env.ENABLE_API || 'true'
 
 process.env.AIS_DATA_PROVIDER_KYSTVERKET_API_KEY = ''
 process.env.AIS_DATA_PROVIDER_KYSTVERKET_URL = process.env.AIS_DATA_PROVIDER_KYSTVERKET_URL || 'https://ais.rs.no/aktive_pos.json'

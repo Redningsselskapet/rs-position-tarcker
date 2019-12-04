@@ -1,15 +1,26 @@
 ## OPTIONAL ENVIROMENTS VARIABLES:
 
 * AIS_DATA_STORED_IN_DAYS (default: 14)
-* AIS_DATA_FETCH_INTERVAL (default: 10000)
 * MAX_TIME_WINDOW_IN_MINUTES (default: 40)
 * PORT (default: 3000)
 * LOG_LEVEL (default: error)
 
-Specify at least one:
+Enable atleast one:
 
-* ENABLE_AIS_FETCHER (default: false)
-* ENABLE_API (default: false)
+* ENABLE_AIS_COLLECTOR (default: false)
+* ENABLE_API (default: true)
+
+## Ais Data Providers
+
+### Kystverket
+* AIS_DATA_PROVIDER_KYSTVERKET_API_KEY (default: none)
+* AIS_DATA_PROVIDER_KYSTVERKET_URL (default: https://ais.rs.no/aktive_pos.json)
+* AIS_DATA_PROVIDER_KYSTVERKET_ENABLED (default: false)
+
+### Marine Traffic
+* AIS_DATA_PROVIDER_MARINE_TRAFFIC_API_KEY (default: none)
+* AIS_DATA_PROVIDER_MARINE_TRAFFIC_URL (default: `https://services.marinetraffic.com/api/exportvessels/v:8/${process.env.AIS_DATA_PROVIDER_MARINE_TRAFFIC_API_KEY}/timespan:5/protocol:jsono`)
+* AIS_DATA_PROVIDER_MARINE_TRAFFIC_ENABLED (default: none)
 
 ## MANDATORY ENVRONMENTS VARIABLES
 
@@ -21,13 +32,13 @@ Specify at least one:
 ## Examples:
 
 ### Run with docker
-```
-docker run kenguru33/rs-position-tracker -e DB_URI=mongodb://mongodb/mydb:27017/positions -e DB_USER=dbuser -e DB_PASSWORD=pass -e AIS_DATA_URL=https://ais.rs.no/aktive_pos.json -e ENABLE_API=true 
+```bash
+docker run kenguru33/rs-position-tracker -e DB_URI=mongodb://mongodb/mydb:27017/positions -e DB_USER=dbuser -e DB_PASSWORD=pass -e AIS_DATA_URL=https://ais.rs.no/aktive_pos.json -e ENABLE_API=true -e ENABLE_AIS_COLLECTOR=true -e AIS_DATA_PROVIDER_KYSTVERKET_ENABLED=true
 ```
 
 ### Run locally
 First you need to create a .env file. (See .env-example)
-```
+```bash
 npm install
 npm start # or npm watch to run with nodemon
 ```
@@ -35,7 +46,7 @@ npm start # or npm watch to run with nodemon
 ### docker-compose example:
 
 ### dev setup:
-```
+```bash
 docker-compose -f docker-compose-dev.yml up --build  
 ```
 
@@ -51,4 +62,4 @@ Add this configuration to the debug config in vscode
   "restart": true
 }
 ```
-Info: restart: true - since we use nodemon, make debugger reattach on every restart.
+- restart: true - since we use nodemon, make debugger reattach on every restart.
