@@ -38,3 +38,17 @@ npm start # or npm watch to run with nodemon
 ```
 docker-compose -f docker-compose-dev.yml up --build  
 ```
+
+### debug in docker container - vscode setup
+
+Add this configuration to the debug config in vscode
+```javascript
+{
+  "type": "node",
+  "request": "attach",
+  "name": "Docker: Attach to Node",
+  "remoteRoot": "/app",
+  "restart": true
+}
+```
+Info: restart: true - since we use nodemon, make debugger reattach on every restart.

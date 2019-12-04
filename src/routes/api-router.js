@@ -188,7 +188,7 @@ api.get('/get_last_position/:mmsi', aisController.getLastPosition)
  *         description: Date (YYYY-MM-DDTHH:MM:SS)
  *         in: path
  *         required: true
- *         example: 2019-11-15T09:45:00
+ *         example: TEXT(NOW()+TIME(1,0,0), "YYYY-MM-DD HH:MM:SS")
  *         type: string
  *     responses:
  *       200:
