@@ -29,3 +29,5 @@ if (!process.env.DB_USER) {
   console.error('error:', 'DB_USER is not set')
   process.exit()
 }
+
+module.exports = {}

@@ -6,7 +6,8 @@ services:
     networks: 
       - aisnet-backend
     ports: 
-      - 3000:3000  
+      - 3000:3000
+      - 9229:9229  
     environment:
       - ENABLE_API=true
       - LOG_LEVEL=error
@@ -21,6 +22,7 @@ services:
       - ./src:/app/src
     restart: on-failure
     command: [ "node_modules/nodemon/bin/nodemon.js", "src/app.js"]
+    #command: ["node", "--inspect-brk=0.0.0.0", "src/app.js"]
   mongodb-service:
     image: bitnami/mongodb
     environment:

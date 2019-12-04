@@ -1,6 +1,5 @@
 const express = require('express')
 const aisController = require('../controllers/aisController')
-const vesselController = require('../controllers/vesselController.js')
 
 const api = express.Router()
 
