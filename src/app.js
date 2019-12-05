@@ -16,7 +16,7 @@ const { aisDataCollectors } = require('./services/ais-provider-service')
 
 // starts all enabled collectors
 if (ENABLE_AIS_COLLECTOR === 'true') {
-  aisDataCollectors.start() 
+  aisDataCollectors.start()
 } else {
   console.log('All collectors disabled')
 }
@@ -31,7 +31,13 @@ if (ENABLE_API === 'true') {
 
   app.use('/api', apiRouter)
 
-  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
+  app.use(
+    '/api-docs',
+    swaggerUi.serve,
+    swaggerUi.setup(swaggerSpec, {
+      customCss: '.swagger-ui .topbar { display: none }'
+    })
+  )
 
   app.use('/', express.static(path.join(__dirname, '/public')))
 
