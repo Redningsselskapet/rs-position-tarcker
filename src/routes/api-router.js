@@ -1,6 +1,6 @@
 const express = require('express')
 const aisController = require('../controllers/aisController')
-
+const statusController = require('../controllers/statusController')
 const api = express.Router()
 
 /**
@@ -196,4 +196,5 @@ api.get('/get_last_position/:mmsi', aisController.getLastPosition)
  */
 api.get('/get_position/:mmsi/:time', aisController.getPosition)
 
+api.get('/get_status', statusController)
 module.exports = api

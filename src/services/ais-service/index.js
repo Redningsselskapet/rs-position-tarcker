@@ -6,6 +6,8 @@ const getDistance = require('./get-distance')
 const removeAisPosition = require('./remove-ais-positions')
 const getLastAisPosition = require('./get-last-ais-position')
 const getMovingVessels = require('./get-moving-vessels')
+const getAisServiceStatus = require('./get-status')
+
 module.exports = {
   addAisPositions,
   getAisPosition,
@@ -14,5 +16,6 @@ module.exports = {
   getDistance,
   removeAisPosition,
   getLastAisPosition,
-  getMovingVessels
+  getMovingVessels,
+  getAisServiceStatus
 }

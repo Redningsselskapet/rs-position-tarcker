@@ -23,8 +23,8 @@ mongoose
       .then(() => console.log('Index has been syncronized!'))
       .catch(err => {
         console.log('SYNC' + err.message)
-        conn.disconnect()
-        process.exit(1)
+        // conn.disconnect()
+        // process.exit(1)
       })
   })
   .catch(err => {

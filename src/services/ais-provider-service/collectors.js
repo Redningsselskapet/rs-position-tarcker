@@ -45,14 +45,4 @@ aisDataCollectors.stop = function () {
   })
 }
 
-aisDataCollectors.getMovingVessels = function () {
-  return movingVessels
-    .sort((v1, v2) => {
-      return v1.MMSI - v2.MSSI
-    })
-    .sort((v1, v2) => {
-      return moment.utc(v1.Time_stamp) - moment.utc(v2.Time_stamp)
-    })
-}
-
 module.exports = aisDataCollectors
