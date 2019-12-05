@@ -23,9 +23,6 @@ module.exports = collector => {
     },
     name: () => {
       return collector.name()
-    },
-    getMovingVessels: () => {
-      return collector.getMovingVessels()
     }
   }
 }
