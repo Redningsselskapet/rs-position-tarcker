@@ -1,6 +1,5 @@
 const express = require('express')
 const aisController = require('../controllers/aisController')
-const statusController = require('../controllers/statusController')
 const weatherController = require('../controllers/weatherController')
 const api = express.Router()
 
@@ -196,20 +195,6 @@ api.get('/get_last_position/:mmsi', aisController.getLastPosition)
  *         description: Vessel position at a given time. Position is returned if found in defined timespan +/- from given time. (Timespan is set in app config)
  */
 api.get('/get_position/:mmsi/:time', aisController.getPosition)
-
-/**
- * @swagger
- *
- * /api/get_status:
- *   get:
- *     description: Get status
- *     produces:
- *       - application/json
- *     responses:
- *       200:
- *         description: Application status
- */
-api.get('/get_status', statusController)
 
 /**
  * @swagger
