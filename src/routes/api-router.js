@@ -189,7 +189,7 @@ api.get('/get_last_position/:mmsi', aisController.getLastPosition)
  *         description: Date (YYYY-MM-DDTHH:MM:SS)
  *         in: path
  *         required: true
- *         example: TEXT(NOW()+TIME(1,0,0), "YYYY-MM-DD HH:MM:SS")
+ *         example: 2019-12-06T12:00:00
  *         type: string
  *     responses:
  *       200:
@@ -211,6 +211,37 @@ api.get('/get_position/:mmsi/:time', aisController.getPosition)
  */
 api.get('/get_status', statusController)
 
+/**
+ * @swagger
+ *
+ * /api/get_weather/{lat}/{lng}/{time}:
+ *   get:
+ *     description: Get weather at a position at a given time
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: lat
+ *         description: Latitude
+ *         in: path
+ *         required: true
+ *         example: 59.91273
+ *         type: string
+ *       - name: lng
+ *         description: Longitude
+ *         in: path
+ *         required: true
+ *         example: 10.74609
+ *         type: string
+ *       - name: time
+ *         description: Date (YYYY-MM-DDTHH:MM:SS)
+ *         in: path
+ *         required: true
+ *         example: 2019-12-06T12:00:00
+ *         type: string
+ *     responses:
+ *       200:
+ *         description: Vessel position at a given time. Position is returned if found in defined timespan +/- from given time. (Timespan is set in app config)
+ */
 api.get('/get_weather/:lat/:lng/:time', weatherController.getWeather)
 
 module.exports = api

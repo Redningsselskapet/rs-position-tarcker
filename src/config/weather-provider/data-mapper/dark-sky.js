@@ -1,8 +1,8 @@
 const moment = require('moment')
 module.exports = data => {
   return {
-    lat: data.currently.latitude,
-    lng: data.currently.longitude,
+    lat: data.latitude,
+    lng: data.longitude,
     time: moment.unix(data.currently.time).format('YYYY-MM-DDTHH:mm:ss') + 'Z',
     summary: data.currently.summary,
     icon: data.currently.icon,
