@@ -8,7 +8,7 @@ const swaggerOptions = {
       version: '1.0.0'
     }
   },
-  apis: ['src/routes/api-router.js']
+  apis: ['src/routes/api-router.js', 'src/routes/status-router.js']
 }
 
 // Initialize swagger-jsdoc -> returns validated swagger spec in json format

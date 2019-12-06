@@ -7,6 +7,7 @@ const path = require('path')
 const cors = require('cors')
 const express = require('express')
 const apiRouter = require('./routes/api-router')
+const statusRouter = require('./routes/status-router')
 const morgan = require('morgan')
 
 const { swaggerSpec } = require('./config/docs')
@@ -21,14 +22,16 @@ if (ENABLE_AIS_COLLECTOR === 'true') {
   console.log('All collectors disabled')
 }
 
+const app = express()
+
+app.options('*', cors())
+app.use(cors())
+
+app.use(morgan('combined'))
+
+app.use('/status', statusRouter)
+
 if (ENABLE_API === 'true') {
-  const app = express()
-
-  app.options('*', cors())
-  app.use(cors())
-
-  app.use(morgan('combined'))
-
   app.use('/api', apiRouter)
 
   app.use(
