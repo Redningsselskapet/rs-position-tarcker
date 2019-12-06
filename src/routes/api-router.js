@@ -1,6 +1,7 @@
 const express = require('express')
 const aisController = require('../controllers/aisController')
 const statusController = require('../controllers/statusController')
+const weatherController = require('../controllers/weatherController')
 const api = express.Router()
 
 /**
@@ -209,4 +210,7 @@ api.get('/get_position/:mmsi/:time', aisController.getPosition)
  *         description: Application status
  */
 api.get('/get_status', statusController)
+
+api.get('/get_weather/:lat/:lng/:time', weatherController.getWeather)
+
 module.exports = api
