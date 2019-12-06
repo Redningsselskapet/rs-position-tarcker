@@ -7,7 +7,6 @@ const moment = require('moment')
  * @returns {Promise}
  */
 const getLastAisPosition = mmsi => {
-
   return getAisPosition(moment.utc(), mmsi)
 }
 
