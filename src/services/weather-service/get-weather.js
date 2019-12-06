@@ -8,7 +8,7 @@ const getWeather = async ({ lat, lng, time }) => {
   console.log(time)
   console.log(`${url}/${lat},${lng},${time}?exclude=minutely,hourly,daily,alerts,flags&units=si`)
   return axios.get(`${url}/${lat},${lng},${time}?exclude=minutely,hourly,daily,alerts,flags&units=si`).then(response => {
-    const weather = response.data
+    const weather = weatherProvider.dataMapper(response.data)
     return weather
   })
 }
