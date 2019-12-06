@@ -1,6 +1,8 @@
 const dataMapper = require('./data-mapper')
+const { WEATHER_PROVIDER_URL, WEATHER_PROVIDER_API_KEY } = process.env
+
 module.exports = {
   name: 'dark-sky',
-  url: 'https://api.darksky.net/forecast/7855bcada0bc7b69f002d696fdfae001',
+  url: `${WEATHER_PROVIDER_URL}/${WEATHER_PROVIDER_API_KEY}`,
   dataMapper: dataMapper.darkSky
 }

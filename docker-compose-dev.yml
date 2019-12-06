@@ -18,6 +18,8 @@ services:
       - DB_URI=mongodb://mongodb-service:27017/positions
       - DB_USER=my_user
       - DB_PASSWORD=password123
+      - WEATHER_PROVIDER_URL=https://api.darksky.net/forecast
+      - WEATHER_PROVIDER_API_KEY=7855bcada0bc7b69f002d696fdfae001
     volumes:
       - ./src:/app/src
     restart: on-failure
