@@ -22,6 +22,10 @@ Enable atleast one:
 * AIS_DATA_PROVIDER_MARINE_TRAFFIC_URL (default: `https://services.marinetraffic.com/api/exportvessels/v:8/${process.env.AIS_DATA_PROVIDER_MARINE_TRAFFIC_API_KEY}/timespan:5/protocol:jsono`)
 * AIS_DATA_PROVIDER_MARINE_TRAFFIC_ENABLED (default: none)
 
+## Weather Data Provider
+* WEATHER_PROVIDER_URL (default: none)
+* WEATHER_PROVIDER_API_KEY (default: none)
+
 ## MANDATORY ENVRONMENTS VARIABLES
 
 * AIS_DATA_URL (default: not set)
