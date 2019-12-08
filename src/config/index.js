@@ -1,6 +1,8 @@
 process.env.AIS_DATA_STORED_IN_DAYS = process.env.AIS_DATA_STORED_IN_DAYS || 14
 process.env.MAX_TIME_WINDOW_IN_MINUTES = process.env.MAX_TIME_WINDOW_IN_MINUTES || 40
 
+process.env.QUERY_TIMEOUT = process.env.QUERY_TIMEOUT || 5000
+
 process.env.PORT = process.env.PORT || 3000
 process.env.LOG_LEVEL = process.env.LOG_LEVEL || 'info'
 

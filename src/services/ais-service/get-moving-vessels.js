@@ -1,6 +1,7 @@
 const { AisPosition } = require('../../config/database')
 const moment = require('moment')
 const timeWindowInMinutes = 1
+const queryTimeout = parseInt(process.env.QUERY_TIMEOUT)
 
 const getMovingVessels = async () => {
   const time = moment
@@ -11,7 +12,8 @@ const getMovingVessels = async () => {
   const positions = await AisPosition.find({
     Time_stamp: { $gte: time },
     SOG: { $gte: 1 }
-  })
+  }).maxTimeMS(queryTimeout)
+
   const positionMap = new Map()
   positions
     .map(position => position.toObject())

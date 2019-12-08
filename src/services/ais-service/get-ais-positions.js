@@ -1,5 +1,6 @@
 const { AisPosition } = require('../../config/database')
 const logger = require('../logger-service')
+const queryTimeout = parseInt(process.env.QUERY_TIMEOUT)
 
 /**
  *
@@ -19,7 +20,7 @@ const getAisPosition = async (fromTime, toTime, mmsi) => {
       aisPositions = await AisPosition.find({
         Time_stamp: { $gte: t1, $lte: t2 },
         MMSI: mmsi
-      })
+      }).maxTimeMS(queryTimeout)
     } else {
       aisPositions = await AisPosition.find({
         Time_stamp: { $gte: t1, $lte: t2 }

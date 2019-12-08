@@ -1,6 +1,7 @@
 const moment = require('moment')
 const { AisPosition } = require('../../config/database')
 const logger = require('../logger-service')
+const queryTimeout = parseInt(process.env.QUERY_TIMEOUT)
 
 /**
  *
@@ -26,7 +27,7 @@ const getAisPosition = async (time, mmsi) => {
     const positions = await AisPosition.find({
       Time_stamp: { $gte: t1, $lte: t2 },
       MMSI: mmsi
-    })
+    }).maxTimeMS(queryTimeout)
 
     let nearestPos = null
     let smallestTimeDiff = (timeWindowMinutes * 1000) / 2
