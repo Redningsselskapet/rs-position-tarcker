@@ -19,13 +19,6 @@ mongoose
   )
   .then(conn => {
     console.log('Connection to database established.')
-    models.AisPosition.syncIndexes()
-      .then(() => console.log('Index has been syncronized!'))
-      .catch(err => {
-        console.log('SYNC' + err.message)
-        // conn.disconnect()
-        // process.exit(1)
-      })
   })
   .catch(err => {
     console.log(`Error: ${err.message}`)
