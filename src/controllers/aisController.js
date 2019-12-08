@@ -137,6 +137,10 @@ module.exports = {
       })
   },
   async getMovingVessels (req, res) {
-    res.send(await aisDataService.getMovingVessels())
+    try {
+      res.send(await aisDataService.getMovingVessels())
+    } catch (error) {
+      res.send(JSON.stringify(error.message))
+    }
   }
 }
