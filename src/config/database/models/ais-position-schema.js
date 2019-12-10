@@ -29,4 +29,5 @@ aisPositionSchema.options.toObject.transform = function (doc, ret, options) {
   return ret
 }
 
-module.exports = mongoose.model('Ais Positions', aisPositionSchema)
+// module.exports = mongoose.model('Ais Positions', aisPositionSchema)
+module.exports = aisPositionSchema

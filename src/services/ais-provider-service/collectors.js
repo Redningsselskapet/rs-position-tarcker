@@ -2,14 +2,11 @@ const worker = require('@redningsselskapet/data-worker')
 
 const { aisDataProviders } = require('../../config/aisdata-providers')
 const fetchAisData = require('./fetch-aisdata')
-const { addAisPositions } = require('../ais-service')
+const { addAisPositions, addLastAisPosition } = require('../ais-service')
 const serviceManager = require('./collector-manager')
 const logger = require('../logger-service')
 
-const moment = require('moment')
-
 const aisDataCollectors = []
-const movingVessels = []
 
 aisDataProviders.forEach(provider => {
   logger.info(
@@ -23,9 +20,7 @@ aisDataProviders.forEach(provider => {
         dataMapper: provider.dataMapper
       })
       addAisPositions(data)
-      data
-        .filter(vessel => vessel.SOG > 1)
-        .map(vessel => movingVessels.push(vessel))
+      data.map(vessel => addLastAisPosition(vessel))
     },
     interval: provider.interval,
     name: provider.name

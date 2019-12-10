@@ -7,6 +7,7 @@ const removeAisPosition = require('./remove-ais-positions')
 const getLastAisPosition = require('./get-last-ais-position')
 const getMovingVessels = require('./get-moving-vessels')
 const getAisServiceStatus = require('./get-status')
+const addLastAisPosition = require('./add-last-ais-position')
 
 module.exports = {
   addAisPositions,
@@ -17,5 +18,6 @@ module.exports = {
   removeAisPosition,
   getLastAisPosition,
   getMovingVessels,
-  getAisServiceStatus
+  getAisServiceStatus,
+  addLastAisPosition
 }
