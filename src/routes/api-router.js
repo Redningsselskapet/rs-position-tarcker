@@ -23,13 +23,13 @@ const api = express.Router()
  *         description: Start of timespan (YYYY-MM-DDTHH:MM:SS)
  *         in: path
  *         required: true
- *         example: 2019-11-15T09:45:00
+ *         example: 2020-04-30T09:45:00
  *         type: string
  *       - name: toTime
  *         description: End of timespan (YYYY-MM-DDTHH:MM:SS)
  *         in: path
  *         required: true
- *         example: 2019-11-15T23:00:00
+ *         example: 2020-04-30T23:00:00
  *         type: string
  *     responses:
  *       200:
@@ -56,13 +56,13 @@ api.get('/get_positions/:mmsi/:fromTime/:toTime', aisController.getPositions)
  *         description: Start of timespan (YYYY-MM-DDTHH:MM:SS)
  *         in: path
  *         required: true
- *         example: 2019-11-15T09:45:00
+ *         example: 2020-04-30T09:45:00
  *         type: string
  *       - name: toTime
  *         description: End of timespan (YYYY-MM-DDTHH:MM:SS)
  *         in: path
  *         required: true
- *         example: 2019-11-15T23:00:00
+ *         example: 2020-04-30T23:00:00
  *         type: string
  *     responses:
  *       200:
@@ -189,7 +189,7 @@ api.get('/get_last_position/:mmsi', aisController.getLastPosition)
  *         description: Date (YYYY-MM-DDTHH:MM:SS)
  *         in: path
  *         required: true
- *         example: 2019-11-15T09:45:00
+ *         example: 2020-04-30T09:45:00
  *         type: string
  *     responses:
  *       200:
