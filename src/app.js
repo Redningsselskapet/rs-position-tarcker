@@ -61,7 +61,7 @@ if (process.env.ENABLE_AIS_FETCHER === 'true') {
 }
 
 // init express application
-if (process.env.ENABLE_API) {
+if (process.env.ENABLE_API === 'true') {
   const app = express()
 
   app.options('*', cors())
