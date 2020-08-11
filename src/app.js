@@ -57,7 +57,7 @@ const importData = function () {
 // start ais Import Service
 if (process.env.ENABLE_AIS_FETCHER === 'true') {
   setInterval(importData, process.env.AIS_DATA_FETCH_INTERVAL)
-  console.log(chalk.green('Ais Import Service started.'))
+  console.log(chalk.green('Ais Import Service for Marine Traffic started.'))
 }
 
 // init express application
