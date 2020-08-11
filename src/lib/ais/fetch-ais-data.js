@@ -33,7 +33,7 @@ const transform = async (aisPositions) => {
       Decimal_Latitude: data.LAT,
       Decimal_Longitude: data.LON,
       Time_stamp: data.TIMESTAMP + 'Z',
-      SOG: data.SPEED,
+      SOG: data.SPEED / 10,
       COG: data.COURSE,
     }
   })
