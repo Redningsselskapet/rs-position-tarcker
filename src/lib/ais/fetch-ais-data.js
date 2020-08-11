@@ -26,7 +26,7 @@ const transform = async (aisPositions) => {
     const {lng, lat} = dec2dms({lng: parseFloat(data.LON), lat: parseFloat(data.LAT)})
     return {
       MMSI: data.MMSI,
-      Ship_name: 'N/A',
+      Ship_name: 'RS 148 MJ0SVEKTEREN',
       Destination: 'N/A',
       Latitude: lat,
       Longitude: lng,
