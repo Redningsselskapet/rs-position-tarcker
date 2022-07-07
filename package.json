@@ -26,7 +26,7 @@
     "express": "^4.14.0",
     "gps-distance": "0.0.4",
     "lodash": "^4.17.3",
-    "moment": "^2.17.1",
+    "moment": "^2.29.4",
     "mongoose": "^5.7.11",
     "morgan": "^1.9.0",
     "node-fetch": "^1.6.3",
